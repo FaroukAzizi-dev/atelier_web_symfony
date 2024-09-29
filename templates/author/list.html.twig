@@ -1,0 +1,65 @@
+{% block body %}
+
+{% if author is empty %}
+
+    <p>List of Authors is empty</p>
+
+    
+    <div>
+        <h4>Nombre des Auteurs : {{ author | length }}</h4>
+        <h4>Nombre total des livres : 0</h4>
+    </div>
+
+{% else %}
+    
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100px;
+        }
+    </style>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Authors List</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ author[0].username | upper}}</td>
+                <td><a href="{{ path('app_author_details', { id: author[0].id }) }}">Details</a></td>
+            </tr>
+            <tr>
+                <td>{{ author[1].username | upper}}</td>
+                <td><a href="{{ path('app_author_details', { id: author[1].id }) }}">Details</a></td>
+            </tr>
+            <tr>
+                <td>{{ author[2].username | upper}}</td>
+                <td><a href="{{ path('app_author_details', { id: author[2].id }) }}">Details</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <h4>Nombre des Auteurs : {{ author | length }}</h4>
+        {% set s = ( author[0].nb_books + author[1].nb_books + author[2].nb_books) %}
+        <h4>Nombre total des livres : {{ s }}</h4>
+    </div>
+
+    
+{% endif %}
+
+{% endblock %}

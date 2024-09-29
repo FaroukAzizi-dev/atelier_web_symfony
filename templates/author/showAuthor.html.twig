@@ -1,0 +1,46 @@
+{% block body %}
+
+{% if id is defined and id >= 1 and id <= 3 %}
+       <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100px;
+        }
+    </style>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Number of Books</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="{{ author[id-1].picture }}"></td>
+                <td>{{ author[id-1].username | upper}}</td>
+                <td><strong>{{ author[id-1].email }}</strong></td>
+                <td><b>{{ author[id-1].nb_books }}</b></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+{% else %}
+    <b>Author not Found</b>
+{% endif %}
+
+{% endblock %}
